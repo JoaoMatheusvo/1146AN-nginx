@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: auth
+          uri: http://auth-service:8081
+          predicates:
+            - Path=/api/auth/**
+        - id: catalog
+          uri: http://catalog-service:8082
+          predicates:
+            - Path=/api/catalog/**
+logging:
+  level:
+    root: INFO
